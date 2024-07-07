@@ -1,17 +1,30 @@
-const Mexc = require('./dist/js/package')
-const cred = require('./config/mexcCredentianls')
-// const {log} = require("node:util");
+const UserRegistry = new (require('./lib/UserRegistry'))();
 
-const client = new Mexc.Spot()
-client.config.apiKey = cred.apiKey
-client.config.apiSecret = cred.apiSecret
+(function check() {
+  let user = UserRegistry.getUser(1);
+  user.setClient();
+  
+  const client = user.getClient()
+  
+  // let singleRes = client.exchangeInfo(/*{symbols:"BTCUSDT,COLLEUSDT"}*/[]);
+  // console.log(singleRes);
 
-const singleRes = client.exchangeInfo(/*{symbols:"BTCUSDT,COLLEUSDT"}*/[]);
-console.log(singleRes);
+  const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
+    timeInForce: "GTC",
+    quantity: 91
+    // quoteOrderQty: 5.1
+  });
+  
+  console.log(order);
+})();
 
-const singleResLength = singleRes.symbols.length;
 
-let confirmPairs = new Map();
+// const singleRes = client.exchangeInfo(/*{symbols:"BTCUSDT,COLLEUSDT"}*/[]);
+// console.log(singleRes);
+//
+// const singleResLength = singleRes.symbols.length;
+//
+// let confirmPairs = new Map();
 
 // for (let i = 0; i < singleResLength; i++) {
 //   let coin = singleRes.symbols[i];
@@ -45,13 +58,13 @@ let confirmPairs = new Map();
 // }
 
 
-const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
-  timeInForce: "GTC",
-  quantity: 91
-  // quoteOrderQty: 5.1
-});
-
-console.log(order);
+// const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
+//   timeInForce: "GTC",
+//   quantity: 91
+//   // quoteOrderQty: 5.1
+// });
+//
+// console.log(order);
 //
 // let open = client.openOrders("WEFIUSDT");
 // console.log(open)
