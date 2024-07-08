@@ -1,21 +1,34 @@
-const UserRegistry = new (require('./lib/UserRegistry'))();
+const lib = require('./lib');
+const scheduler = require('./scheduler');
 
-(function check() {
-  let user = UserRegistry.getUser(1);
+
+(async function check() {
+  let user = lib.userRegistry.getUser(1);
+
   user.setClient();
-  
-  const client = user.getClient()
+  user.setSearchSettings(500000, 1000000);
+
+  user.setSearchInterval();
+
+
+
+
+  setTimeout(() => {
+    user.clearSearchInterval();
+  }, 6500);
+
+  // const client = user.getClient();
   
   // let singleRes = client.exchangeInfo(/*{symbols:"BTCUSDT,COLLEUSDT"}*/[]);
   // console.log(singleRes);
 
-  const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
-    timeInForce: "GTC",
-    quantity: 91
-    // quoteOrderQty: 5.1
-  });
-  
-  console.log(order);
+  // const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
+  //   timeInForce: "GTC",
+  //   quantity: 91
+  //   // quoteOrderQty: 5.1
+  // });
+  //
+  // console.log(order);
 })();
 
 
@@ -26,36 +39,7 @@ const UserRegistry = new (require('./lib/UserRegistry'))();
 //
 // let confirmPairs = new Map();
 
-// for (let i = 0; i < singleResLength; i++) {
-//   let coin = singleRes.symbols[i];
-//
-//   if (coin.quoteAsset === 'USDT'
-//     && !confirmPairs.has(coin.symbol)
-//     && coin.status === 'ENABLED'
-//     && coin.orderTypes.includes('LIMIT')
-//     && coin.orderTypes.includes('MARKET')
-//   ) {
-//     confirmPairs.set(coin.symbol, coin);
-//   }
-// }
-//
-// let middleCoinsList = [];
-// const avgPriceList = client.ticker24hr();
-// const avgPriceListLength = avgPriceList.length;
-//
-// for (let i = 0; i < avgPriceListLength; i++) {
-//   const coinInfo = avgPriceList[i];
-//
-//   if (!confirmPairs.has(coinInfo.symbol)) {
-//     continue;
-//   }
-//
-//   const volumeUsdt = parseFloat(coinInfo.lastPrice) * parseFloat(coinInfo.volume);
-//
-//   if (volumeUsdt < 50000 || volumeUsdt > 1000000) {
-//     confirmPairs.delete(coinInfo.symbol);
-//   }
-// }
+55
 
 
 // const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
