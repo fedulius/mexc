@@ -6,16 +6,17 @@ const scheduler = require('./scheduler');
   let user = lib.userRegistry.getUser(1);
 
   user.setClient();
-  user.setSearchSettings(500000, 1000000);
+  // user.setSearchSettings(100000, 1000000);
+  // user.setSearchInterval();
+  
+  
+  setInterval(() => {
+    lib.trade(user.getClient(), user.getTradeSettings()).hardTrade('DAVINCIUSDT');
+  }, 3000);
 
-  user.setSearchInterval();
-
-
-
-
-  setTimeout(() => {
-    user.clearSearchInterval();
-  }, 6500);
+  // setTimeout(() => {
+  //   user.clearSearchInterval();
+  // }, 6500);
 
   // const client = user.getClient();
   
