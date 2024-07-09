@@ -11,7 +11,7 @@ const scheduler = require('./scheduler');
   
   
   setInterval(() => {
-    lib.trade(user.getClient(), user.getTradeSettings()).hardTrade('DAVINCIUSDT');
+    lib.trade(user).hardTrade('USBTUSDT');
   }, 3000);
 
   // setTimeout(() => {
@@ -40,7 +40,7 @@ const scheduler = require('./scheduler');
 //
 // let confirmPairs = new Map();
 
-55
+// 55
 
 
 // const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
