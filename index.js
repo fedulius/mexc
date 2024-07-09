@@ -6,22 +6,22 @@ const scheduler = require('./scheduler');
   let user = lib.userRegistry.getUser(1);
 
   user.setClient();
-  // user.setSearchSettings(100000, 1000000);
+  // user.setSearchSettings(100000, 1000000)
   // user.setSearchInterval();
   
   
-  setInterval(() => {
-    lib.trade(user).hardTrade('USBTUSDT');
-  }, 3000);
+  // setInterval(() => {
+  //   lib.trade(user).hardTrade('WBRGEUSDT');
+  // }, 2000);
 
   // setTimeout(() => {
   //   user.clearSearchInterval();
   // }, 6500);
 
-  // const client = user.getClient();
-  
-  // let singleRes = client.exchangeInfo(/*{symbols:"BTCUSDT,COLLEUSDT"}*/[]);
-  // console.log(singleRes);
+  const client = user.getClient();
+
+  let singleRes = client.exchangeInfo({symbol:"ULDUSDT"});
+  console.log(singleRes.symbols);
 
   // const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
   //   timeInForce: "GTC",
