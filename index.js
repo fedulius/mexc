@@ -1,15 +1,19 @@
 const lib = require('./lib');
-const scheduler = require('./scheduler');
+const helper = require('./helper');
 
 
 (async function check() {
   let user = lib.userRegistry.getUser(1);
-
   user.setClient();
+  const client = user.getClient();
+  let screenerInstance = lib.screener(user.getSearchSettings(), helper.mexcApi(client));
+  screenerInstance.main();
+  // console.log(helper.mexcApi(client).getCurrentPrice('WBRGEUSDT'));
+
+
   // user.setSearchSettings(100000, 1000000)
   // user.setSearchInterval();
-  
-  
+
   // setInterval(() => {
   //   lib.trade(user).hardTrade('WBRGEUSDT');
   // }, 2000);
@@ -18,10 +22,9 @@ const scheduler = require('./scheduler');
   //   user.clearSearchInterval();
   // }, 6500);
 
-  const client = user.getClient();
 
-  let singleRes = client.exchangeInfo({symbol:"ULDUSDT"});
-  console.log(singleRes.symbols);
+  // let singleRes = client.exchangeInfo([]);
+  // console.log(singleRes.symbols);
 
   // const order = client.newOrderTest("BTCUSDT", "BUY", "MARKET", {
   //   timeInForce: "GTC",
