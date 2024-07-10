@@ -6,7 +6,7 @@ const helper = require('./helper');
   let user = lib.userRegistry.getUser(1);
   user.setClient();
   const client = user.getClient();
-  let screenerInstance = lib.screener(user.getSearchSettings(), helper.mexcApi(client));
+  let screenerInstance = lib.screener(user.getSearchSettings(), helper.mexcApi(client), helper.klineWorker);
   screenerInstance.main();
   // console.log(helper.mexcApi(client).getCurrentPrice('WBRGEUSDT'));
 
