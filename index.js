@@ -17,7 +17,7 @@ const helper = require('./helper');
   // user.setSearchInterval();
 
   // setInterval(() => {
-  //   lib.trade(user, helper).hardTrade('CENNZUSDT');
+  //   lib.trade(user, helper).hardTrade('DDMTUSDT');
   // }, 500);
 
   // setTimeout(() => {
