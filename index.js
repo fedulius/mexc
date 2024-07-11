@@ -3,8 +3,10 @@ const helper = require('./helper');
 
 
 (async function check() {
+  // console.log(new Date(1720697100000));
   let user = lib.userRegistry.getUser(1);
   user.setClient();
+
   const client = user.getClient();
   let screenerInstance = lib.screener(user.getSearchSettings(), helper.mexcApi(client), helper.klineWorker);
   screenerInstance.main();
