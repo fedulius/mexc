@@ -29,7 +29,7 @@ class KlineWorker {
       priceSum += parseFloat(priceList[i]);
       
       if (count === options.pricesInRow || i === 0) {
-        avgPriceList.push((priceSum / count).toFixed(6));
+        avgPriceList.push((priceSum / count));
         count = 0;
         priceSum = 0;
       }
@@ -47,8 +47,8 @@ class KlineWorker {
     let hedgehogRate = 1;
 
     for (let i = priceListLength - 2; i >= 0; i--) {
-      let percentDiffer = (closingPrice / priceList[i]) * 100 - 100;
-      percentDiffer = percentDiffer > 0 ? percentDiffer : percentDiffer * -1;
+      let percentDiffer = (closingPrice - priceList[i]) / closingPrice;
+      percentDiffer = percentDiffer >= 0 ? percentDiffer : percentDiffer * -1;
 
       hedgehogRate -= percentDiffer;
     }
